@@ -14,6 +14,7 @@ public class Users {
     private Integer id;
     @Column(name = "name")
     private String name;
+
     private Integer salary;
     private String teamName;
 
