@@ -1,22 +1,27 @@
 package com.s_project_hibernate.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users", catalog = "test")
 public class Users {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Auto-generates ID
+    @Column(name = "user_id")
     private Integer id;
+
     @Column(name = "name")
     private String name;
 
     private Integer salary;
     private String teamName;
+
+    //bidirectional mapping
+    //When you frequently need to access both related entities
+    //(e.g., fetching a user's contact or getting the user from a contact).
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    private UsersContact userContact;
 
     public Users() {
     }
